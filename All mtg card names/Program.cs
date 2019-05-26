@@ -10,17 +10,12 @@ namespace All_mtg_card_names
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Before Request");
-
             var webRequest = WebRequest.Create(@"https://mtgjson.com/json/AllCards.json");
-
             var strContent = new StreamReader(webRequest.GetResponse().GetResponseStream()).ReadToEnd();
 
             JObject jObject = JObject.Parse(strContent);
 
-            Console.WriteLine(jObject);            
-
-            Console.WriteLine("After Request");
+            Console.WriteLine(jObject);
         }
     }
 }
