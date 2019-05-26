@@ -13,9 +13,19 @@ namespace All_mtg_card_names
             var webRequest = WebRequest.Create(@"https://mtgjson.com/json/AllCards.json");
             var strContent = new StreamReader(webRequest.GetResponse().GetResponseStream()).ReadToEnd();
 
-            JObject jObject = JObject.Parse(strContent);
+            String resultString = "";
 
-            Console.WriteLine(jObject);
+            JObject cardData = JObject.Parse(strContent);
+            JEnumerable<JToken> objectList = cardData.Children();
+
+            foreach (JToken cardDataObject in objectList)
+            {
+                Console.WriteLine(cardDataObject.First.First);
+                resultString += cardDataObject.First + ", ";
+            }
+
+
+            Console.WriteLine(resultString);
         }
     }
 }
